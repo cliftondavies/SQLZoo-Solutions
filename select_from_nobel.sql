@@ -74,3 +74,35 @@ ORDER BY
 CASE WHEN subject IN ('Physics', 'Chemistry') THEN 1
 ELSE 0
 END, subject, winner;
+
+
+-- QUIZ
+
+-- Q1
+SELECT winner FROM nobel
+WHERE winner LIKE 'C%' AND winner LIKE '%n';
+ 
+-- Q2
+SELECT COUNT(subject) FROM nobel
+WHERE subject = 'Chemistry'
+AND yr BETWEEN 1950 and 1960;
+
+-- Q3
+SELECT COUNT(DISTINCT yr) FROM nobel
+WHERE yr NOT IN (SELECT DISTINCT yr FROM nobel WHERE subject = 'Medicine');
+
+-- Q5
+SELECT yr FROM nobel
+WHERE yr NOT IN
+(SELECT yr
+FROM nobel
+WHERE subject IN ('Chemistry', 'Physics'));
+
+-- Q6
+SELECT DISTINCT yr
+FROM nobel
+WHERE subject = 'Medicine' AND yr NOT IN
+(SELECT yr FROM nobel 
+WHERE subject = 'Literature')
+AND yr NOT IN (SELECT yr FROM nobel
+WHERE subject = 'Peace');
