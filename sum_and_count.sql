@@ -39,3 +39,31 @@ SELECT continent
 FROM world
 GROUP BY continent
 HAVING SUM(population) >= 100000000;
+
+
+-- QUIZ
+
+-- 1. Sum of population of all countries in 'Europe'
+SELECT SUM(population)
+FROM bbc
+WHERE region = 'Europe';
+
+-- 2. Number of countries with population smaller than 150000
+SELECT COUNT(name)
+FROM bbc
+WHERE population < 150000;
+
+-- 3. Average population of 'Poland', 'Germany' and 'Denmark'
+SELECT AVG(population)
+FROM bbc
+WHERE name IN ('Poland', 'Germany', 'Denmark');
+
+-- 6. Medium population density of each region
+SELECT region, SUM(population) / SUM(area) AS density
+FROM bbc
+GROUP BY region;
+
+-- 7. Name and population density of the country with the largest population
+SELECT name, population / area AS density
+FROM bbc
+WHERE population = (SELECT MAX(population) FROM bbc);
