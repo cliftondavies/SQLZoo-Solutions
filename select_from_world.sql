@@ -63,21 +63,21 @@ WHERE name LIKE '%a%' AND name LIKE '%e%' AND name LIKE '%i%' AND name LIKE '%o%
 
 -- QUIZ
 
--- Q1
+-- 1. Select the name of countries beginning with U
 SELECT name
 FROM world
 WHERE name LIKE 'U%';
 
--- Q2
+-- 2. Select the population of United Kingdom
 SELECT population
 FROM world
 WHERE name = 'United Kingdom';
 
--- Q5
+-- 5. Select the name and population of countries in Europe and Asia
 SELECT name, population
 FROM world
 WHERE continent IN ('Europe', 'Asia');
 
--- Q6
+-- 6. Select the code which would give two rows
 SELECT name FROM world
 WHERE name IN ('Cuba', 'Togo');
