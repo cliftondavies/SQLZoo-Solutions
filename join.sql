@@ -96,3 +96,30 @@ INNER JOIN goal
 ON goal.matchid = game.id
 GROUP BY game.id
 ORDER BY game.mdate, goal.matchid, game.team1, game.team2;
+
+
+-- QUIZ
+
+-- 3. Select players, their team and the amount of goals they scored against Greece(GRE).
+SELECT player, teamid, COUNT(*)
+FROM game
+JOIN goal
+ON matchid = id
+WHERE (team1 = "GRE" OR team2 = "GRE") AND teamid != 'GRE'
+GROUP BY player, teamid;
+
+-- 5. Select the player and their team for those who have scored against Poland(POL) in National Stadium, Warsaw.
+SELECT DISTINCT player, teamid 
+FROM game
+JOIN goal
+ON matchid = id 
+WHERE stadium = 'National Stadium, Warsaw' 
+AND (team1 = 'POL' OR team2 = 'POL') AND teamid != 'POL';
+
+-- 6. Select the player, their team and the time they scored, for players who have played in Stadion Miejski (Wroclaw)
+-- but not against Italy(ITA).
+SELECT DISTINCT player, teamid, gtime
+FROM game 
+JOIN goal 
+ON matchid = id
+WHERE stadium = 'Stadion Miejski (Wroclaw)' AND (( teamid = team2 AND team1 != 'ITA') OR ( teamid = team1 AND team2 != 'ITA'));
