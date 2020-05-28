@@ -67,7 +67,23 @@ FROM world x
 WHERE name <= ALL
 (SELECT name
 FROM world y
-WHERE y.continent = x.continent AND name IS NOT NULL);    
+WHERE y.continent = x.continent AND name IS NOT NULL);
+               
+-- 9. Select countries associated with continents where all countries have a population <= 25000000
+SELECT name, continent, population
+FROM world x
+WHERE 25000000 >= ALL
+(SELECT population
+FROM world y
+WHERE y.continent = x.continent AND y.population > 0);
+               
+-- 10. Select countries that have populations more than three times that of any of their neighbours (in the same continent).
+SELECT name, continent
+FROM world x
+WHERE population > ALL
+(SELECT 3 * population
+FROM world y
+WHERE y.continent = x.continent AND y.name != x.name);                
                
 
 -- QUIZ
