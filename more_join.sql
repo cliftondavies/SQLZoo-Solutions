@@ -132,3 +132,39 @@ WHERE casting.movieid IN
     FROM actor
     WHERE actor.name = 'Art Garfunkel'))
 AND actor.name <> 'Art Garfunkel';
+
+
+-- QUIZ
+     
+-- 1. List the unfortunate directors of the movies which have caused financial loses (gross < budget)
+SELECT name
+FROM actor
+INNER JOIN movie
+ON actor.id = director
+WHERE gross < budget;     
+     
+-- 2. Select correct example of JOINing three tables
+SELECT *
+FROM actor
+INNER JOIN casting
+ON actor.id = actorid
+INNER JOIN movie
+ON movie.id = movieid;     
+     
+-- 3. Show the list of actors called 'John' by order of number of movies in which they acted
+SELECT name, COUNT(movieid)
+FROM casting
+INNER JOIN actor
+ON actorid=actor.id
+WHERE name LIKE 'John %'
+GROUP BY name
+ORDER BY 2 DESC;     
+     
+-- 5. List all the actors that starred in movies directed by Ridley Scott who has id 351
+SELECT name
+FROM movie
+INNER JOIN casting
+ON movie.id = movieid
+INNER JOIN actor
+ON actor.id = actorid
+WHERE ord = 1 AND director = 351;     
