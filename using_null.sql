@@ -58,3 +58,26 @@ CASE WHEN dept = 1 OR dept = 2 THEN 'Sci'
      ELSE 'None'
      END AS dept_type
 FROM teacher;
+
+
+-- QUIZ
+
+-- 1. Select the code which uses an outer join correctly.
+SELECT teacher.name, dept.name
+FROM teacher
+LEFT OUTER JOIN dept
+ON (teacher.dept = dept.id);
+ 
+-- 2. Name of department which employs Cutflower
+SELECT dept.name
+FROM teacher
+JOIN dept
+ON (dept.id = teacher.dept)
+WHERE teacher.name = 'Cutflower';
+
+-- 3. List of all the departments and number of employed teachers
+SELECT dept.name, COUNT(teacher.name)
+FROM teacher
+RIGHT JOIN dept
+ON dept.id = teacher.dept
+GROUP BY dept.name;
