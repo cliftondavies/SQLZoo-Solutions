@@ -66,4 +66,6 @@ GROUP BY region;
 -- 7. Name and population density of the country with the largest population
 SELECT name, population / area AS density
 FROM bbc
-WHERE population = (SELECT MAX(population) FROM bbc);
+WHERE population =
+  (SELECT MAX(population)
+  FROM bbc);
